@@ -1,3 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import 'tailwindcss';
+
+:root {
+  --primary-color: #ff531a;
+  --secondary-color: #ffc6b3;
+  --primary-text-color: #003333;
+  --secondary-text-color: #8c8c8c;
+  --border-color: #999999;
+  --disabled-color: #e6e6e6;
+
+  --fs-page-title: 18px;
+  --fs-sub-title: 16px;
+  --fs-default: 14px;
+  --fs-small: 12px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --fs-page-title: 16px;
+    --fs-sub-title: 14px;
+    --fs-default: 12px;
+    --fs-small: 10px;
+  }
+}
