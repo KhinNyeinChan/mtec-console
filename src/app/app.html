@@ -1,3 +1,20 @@
-<div class="flex min-h-screen items-center justify-center">
-  <h1 class="text-4xl font-bold">Tailwind is working!</h1>
+<div class="relative min-h-screen">
+  @if (loading()) {
+    <div class="fixed inset-0 z-50 flex items-center justify-center bg-white/60">
+      <div class="h-10 w-10 animate-spin rounded-full border-4 border-[var(--primary-border-color)] border-t-[var(--primary-color)]"></div>
+    </div>
+  }
+
+  @if (notification(); as notice) {
+    <div
+      class="fixed top-4 right-4 z-50 rounded px-4 py-2 text-sm text-white"
+      [class.bg-red-600]="notice.level === 'error'"
+      [class.bg-emerald-700]="notice.level === 'success'"
+      [class.bg-blue-800]="notice.level === 'info'"
+    >
+      {{ notice.message }}
+    </div>
+  }
+
+  <router-outlet />
 </div>
