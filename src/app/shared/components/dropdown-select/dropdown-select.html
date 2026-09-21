@@ -1,0 +1,83 @@
+<div
+  class="field"
+  [class.field-error]="hasError()"
+  [class.field-disabled]="isDisabled()"
+  [class.open]="menuOpen()"
+>
+  @if (label()) {
+    <label class="label" [for]="inputId">
+      {{ label() | translate }}
+      @if (required()) {
+        <span class="required" aria-hidden="true">*</span>
+      }
+    </label>
+  }
+
+  <div class="control-wrap">
+    <button
+      type="button"
+      class="control"
+      [id]="inputId"
+      [disabled]="isDisabled()"
+      [attr.name]="name() || null"
+      [attr.aria-invalid]="hasError()"
+      [attr.aria-describedby]="describedBy()"
+      [attr.aria-expanded]="menuOpen()"
+      [attr.aria-controls]="listId"
+      aria-haspopup="listbox"
+      (click)="toggleMenu($event)"
+    >
+      <span class="value" [class.placeholder]="!selectedLabel()">
+        {{ selectedLabel() || (placeholder() | translate) }}
+      </span>
+      <svg class="chevron" viewBox="0 0 16 16" aria-hidden="true">
+        <path
+          d="M3.5 6.2 8 10.8l4.5-4.6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+
+    @if (menuOpen()) {
+      <div class="menu" role="presentation">
+        @if (showSearch()) {
+          <div class="search">
+            <input
+              type="search"
+              [placeholder]="searchPlaceholder() | translate"
+              [value]="searchQuery()"
+              (input)="onSearch($event)"
+              (click)="$event.stopPropagation()"
+            />
+          </div>
+        }
+
+        <ul class="list" role="listbox" [id]="listId" [attr.aria-labelledby]="inputId">
+          @for (option of filteredOptions(); track option.value) {
+            <li
+              role="option"
+              class="option"
+              [class.selected]="option.value === value()"
+              [attr.aria-selected]="option.value === value()"
+              (click)="selectOption(option)"
+            >
+              {{ option.label }}
+            </li>
+          } @empty {
+            <li class="empty">{{ 'common.no_results' | translate }}</li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+
+  @if (hasError()) {
+    <p class="hint hint-error" [id]="errorId">{{ error() | translate }}</p>
+  } @else if (helperText()) {
+    <p class="hint" [id]="helperId">{{ helperText() | translate }}</p>
+  }
+</div>

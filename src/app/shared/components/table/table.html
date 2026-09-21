@@ -1,0 +1,131 @@
+<div class="table-shell">
+  @if (hasRows()) {
+    <div class="table-scroll">
+      <table class="table">
+        <thead>
+          <tr>
+            @for (column of columns(); track column.key) {
+              <th
+                [style.width]="column.width || null"
+                [class.align-center]="column.align === 'center'"
+                [class.align-right]="column.align === 'right'"
+              >
+                {{ column.header | translate }}
+              </th>
+            }
+            @if (hasActions()) {
+              <th class="actions-col">{{ 'common.actions' | translate }}</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of pagedData(); track trackRow($index, row)) {
+            <tr>
+              @for (column of columns(); track column.key) {
+                <td
+                  [class.align-center]="column.align === 'center'"
+                  [class.align-right]="column.align === 'right'"
+                >
+                  {{ cellValue(row, column) }}
+                </td>
+              }
+              @if (hasActions()) {
+                <td class="actions-col">
+                  <div class="actions">
+                    @if (hasAction('view')) {
+                      <button
+                        type="button"
+                        class="action-btn"
+                        [attr.aria-label]="'common.view' | translate"
+                        [attr.title]="'common.view' | translate"
+                        (click)="onView(row)"
+                      >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            d="M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <circle
+                            cx="12"
+                            cy="12"
+                            r="2.6"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                          />
+                        </svg>
+                      </button>
+                    }
+                    @if (hasAction('edit')) {
+                      <button
+                        type="button"
+                        class="action-btn"
+                        [attr.aria-label]="'common.edit' | translate"
+                        [attr.title]="'common.edit' | translate"
+                        (click)="onEdit(row)"
+                      >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            d="M4 20h4.2L19.2 8.9a2.1 2.1 0 0 0 0-3L18 4.7a2.1 2.1 0 0 0-3 0L4 15.8V20Z"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M13.5 6.5 17.5 10.5"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                          />
+                        </svg>
+                      </button>
+                    }
+                    @if (hasAction('delete')) {
+                      <button
+                        type="button"
+                        class="action-btn action-danger"
+                        [attr.aria-label]="'common.delete' | translate"
+                        [attr.title]="'common.delete' | translate"
+                        (click)="onDelete(row)"
+                      >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            d="M5 7h14M9.5 7V5.8A1.8 1.8 0 0 1 11.3 4h1.4A1.8 1.8 0 0 1 14.5 5.8V7M8 7l.7 11.2A1.8 1.8 0 0 0 10.5 20h3a1.8 1.8 0 0 0 1.8-1.8L16 7"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    }
+                  </div>
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-footer">
+      <p class="total">{{ 'common.total_records' | translate: { count: recordTotal() } }}</p>
+      <app-pagination
+        [(page)]="page"
+        [(pageSize)]="pageSize"
+        [totalItems]="recordTotal()"
+        [pageSizeOptions]="pageSizeOptions()"
+      />
+    </div>
+  } @else {
+    <app-empty-state [title]="emptyTitle()" [description]="emptyDescription()" />
+  }
+</div>

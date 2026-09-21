@@ -1,0 +1,36 @@
+<div
+  class="field"
+  [class.field-error]="hasError()"
+  [class.field-disabled]="isDisabled()"
+>
+  @if (label()) {
+    <label class="label" [for]="inputId">
+      {{ label() | translate }}
+      @if (required()) {
+        <span class="required" aria-hidden="true">*</span>
+      }
+    </label>
+  }
+
+  <textarea
+    class="control"
+    [id]="inputId"
+    [name]="name()"
+    [placeholder]="placeholder() | translate"
+    [required]="required()"
+    [disabled]="isDisabled()"
+    [rows]="rows()"
+    [attr.maxlength]="maxlength() || null"
+    [attr.aria-invalid]="hasError()"
+    [attr.aria-describedby]="describedBy()"
+    [value]="value()"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+  ></textarea>
+
+  @if (hasError()) {
+    <p class="hint hint-error" [id]="errorId">{{ error() | translate }}</p>
+  } @else if (helperText()) {
+    <p class="hint" [id]="helperId">{{ helperText() | translate }}</p>
+  }
+</div>

@@ -1,0 +1,98 @@
+<nav class="pagination" [attr.aria-label]="'common.pagination' | translate">
+  <div class="pager">
+    <button
+      type="button"
+      class="nav-btn"
+      [disabled]="isFirstPage()"
+      [attr.aria-label]="'common.previous_page' | translate"
+      (click)="previous()"
+    >
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path
+          d="M10.2 2.7 5.9 8l4.3 5.3"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+
+    @for (item of items(); track $index) {
+      @if (item.kind === 'ellipsis') {
+        <span class="ellipsis" aria-hidden="true">…</span>
+      } @else {
+        <button
+          type="button"
+          class="page-btn"
+          [class.active]="item.value === page()"
+          [attr.aria-current]="item.value === page() ? 'page' : null"
+          [attr.aria-label]="'common.page' | translate: { page: item.value }"
+          (click)="goTo(item.value)"
+        >
+          {{ item.value }}
+        </button>
+      }
+    }
+
+    <button
+      type="button"
+      class="nav-btn"
+      [disabled]="isLastPage()"
+      [attr.aria-label]="'common.next_page' | translate"
+      (click)="next()"
+    >
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path
+          d="M5.8 2.7 10.1 8l-4.3 5.3"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <div class="page-size" [class.open]="menuOpen()">
+    <button
+      type="button"
+      class="page-size-trigger"
+      [id]="selectId"
+      [attr.aria-expanded]="menuOpen()"
+      aria-haspopup="listbox"
+      [attr.aria-label]="'common.items_per_page' | translate"
+      (click)="toggleMenu($event)"
+    >
+      {{ 'common.per_page' | translate: { size: pageSize() } }}
+      <svg class="chevron" viewBox="0 0 16 16" aria-hidden="true">
+        <path
+          d="M3.5 6.2 8 10.8l4.5-4.6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+
+    @if (menuOpen()) {
+      <ul class="page-size-menu" role="listbox" [attr.aria-labelledby]="selectId">
+        @for (option of pageSizeOptions(); track option) {
+          <li
+            role="option"
+            class="page-size-option"
+            [class.selected]="option === pageSize()"
+            [attr.aria-selected]="option === pageSize()"
+            (click)="selectPageSize(option)"
+          >
+            {{ 'common.per_page' | translate: { size: option } }}
+          </li>
+        }
+      </ul>
+    }
+  </div>
+</nav>

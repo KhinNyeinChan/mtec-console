@@ -1,0 +1,72 @@
+@if (open()) {
+  <div class="overlay" (click)="onOverlayClick()">
+    <div
+      class="dialog"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-labelledby]="titleId"
+      [attr.data-tone]="tone()"
+      (click)="$event.stopPropagation()"
+    >
+      <button type="button" class="close" [attr.aria-label]="'common.close' | translate" (click)="cancel()">
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path
+            d="M4 4l8 8M12 4l-8 8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
+
+      <div class="icon" aria-hidden="true">
+        @if (icon()) {
+          <img [src]="icon()" alt="" />
+        } @else {
+          <ng-content select="[confirmIcon]" />
+          <svg
+            class="default-icon"
+            viewBox="0 0 118 118"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M93.3699 93.4167H93.4167M93.3699 93.4167C90.3083 96.4527 84.7599 95.6965 80.8688 95.6965C76.0928 95.6965 73.7928 96.6307 70.384 100.039C67.4817 102.942 63.5907 108.167 59 108.167C54.4093 108.167 50.5182 102.942 47.6158 100.039C44.2071 96.6307 41.9071 95.6965 37.1309 95.6965C33.24 95.6965 27.6915 96.4527 24.63 93.4167C21.5439 90.3565 22.3034 84.785 22.3034 80.8688C22.3034 75.9202 21.2211 73.6448 17.6969 70.1205C12.4546 64.8784 9.83341 62.2568 9.83331 59C9.83336 55.7427 12.4545 53.1216 17.6968 47.8793C20.8427 44.7334 22.3034 41.616 22.3034 37.131C22.3034 33.2399 21.5472 27.6914 24.5833 24.6297C27.6436 21.5438 33.215 22.3033 37.131 22.3033C41.616 22.3033 44.7334 20.8427 47.8792 17.6969C53.1216 12.4545 55.7427 9.83333 59 9.83333C62.2573 9.83333 64.8783 12.4545 70.1205 17.6969C73.2657 20.8421 76.3829 22.3033 80.8688 22.3033C84.7599 22.3033 90.3088 21.5471 93.3704 24.5833C96.4561 27.6436 95.6965 33.215 95.6965 37.131C95.6965 42.0797 96.7792 44.3551 100.303 47.8793C105.546 53.1216 108.167 55.7427 108.167 59C108.167 62.2568 105.546 64.8784 100.303 70.1205C96.7787 73.6448 95.6965 75.9202 95.6965 80.8688C95.6965 84.785 96.4561 90.3565 93.3699 93.4167Z"
+              stroke="currentColor"
+              stroke-width="8.5"
+            />
+            <path
+              d="M44.25 63.3901L53.1 71.2917L73.75 46.7083"
+              stroke="currentColor"
+              stroke-width="8.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        }
+      </div>
+
+      <h2 class="title" [id]="titleId">{{ title() | translate }}</h2>
+
+      @if (description()) {
+        <p class="description">{{ description() | translate }}</p>
+      }
+
+      <div class="actions">
+        <app-button
+          [text]="cancelText() | translate"
+          variant="secondary"
+          size="sm"
+          (click)="cancel()"
+        />
+        <app-button
+          [text]="confirmText() | translate"
+          [variant]="confirmVariant()"
+          size="sm"
+          (click)="confirm()"
+        />
+      </div>
+    </div>
+  </div>
+}

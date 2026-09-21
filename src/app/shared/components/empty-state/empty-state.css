@@ -1,0 +1,50 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.empty-state {
+  --empty-icon-soft: color-mix(in srgb, var(--primary-color) 12%, white);
+  --empty-icon-mid: color-mix(in srgb, var(--primary-color) 28%, white);
+  --empty-icon-cloud: color-mix(in srgb, var(--primary-color) 5%, white);
+  --empty-icon-accent: var(--primary-color);
+  --empty-icon-deep: color-mix(in srgb, var(--primary-color) 82%, black);
+  --empty-icon-dark: color-mix(in srgb, var(--primary-color) 62%, black);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 32px 16px;
+  text-align: center;
+}
+
+.illustration {
+  width: min(280px, 72vw);
+  margin-bottom: 8px;
+}
+
+.illustration svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.title {
+  margin: 0;
+  color: var(--primary-text-color);
+  font-size: var(--fs-sub-title);
+  font-weight: var(--title-font-weight);
+  line-height: 1.3;
+}
+
+.description {
+  margin: 0;
+  max-width: 360px;
+  color: var(--secondary-text-color);
+  font-size: var(--fs-default);
+  font-weight: var(--default-font-weight);
+  line-height: 1.4;
+}

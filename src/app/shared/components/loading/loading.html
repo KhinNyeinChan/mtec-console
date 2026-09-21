@@ -1,0 +1,20 @@
+<div
+  class="loading-state"
+  role="status"
+  aria-live="polite"
+  [attr.aria-label]="(label() || 'common.loading') | translate"
+>
+  <div class="bars" aria-hidden="true">
+    @for (height of bars; track $index) {
+      <span
+        class="bar"
+        [style.--bar-height]="height"
+        [style.animation-delay.ms]="$index * 120"
+      ></span>
+    }
+  </div>
+
+  @if (label()) {
+    <p class="label">{{ label() | translate }}</p>
+  }
+</div>

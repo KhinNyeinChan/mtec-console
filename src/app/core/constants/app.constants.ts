@@ -11,6 +11,10 @@ export const APP_CONSTANTS = {
     CURRENT: 'current_tenant',
   },
 
+  I18N: {
+    LANGUAGE: 'app_language',
+  },
+
   HTTP: {
     TENANT_HEADER: 'X-Tenant-Id',
   },
