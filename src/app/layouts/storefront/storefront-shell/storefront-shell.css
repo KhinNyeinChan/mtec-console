@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.storefront-layout {
+  display: flex;
+  height: 100%;
+  min-height: 100vh;
+  background: color-mix(in srgb, var(--secondary-color) 55%, #f4f6f8);
+}
+
+.storefront-layout__sidebar {
+  flex: 0 0 auto;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+}
+
+.storefront-layout__main {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.storefront-layout__header {
+  flex: 0 0 auto;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.storefront-layout__content {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 24px;
+  overflow: auto;
+}

@@ -1,0 +1,11 @@
+<div class="storefront-layout">
+  <app-storefront-sidebar class="storefront-layout__sidebar" (logout)="onLogout()" />
+
+  <div class="storefront-layout__main">
+    <app-storefront-header class="storefront-layout__header" />
+
+    <main class="storefront-layout__content">
+      <router-outlet />
+    </main>
+  </div>
+</div>

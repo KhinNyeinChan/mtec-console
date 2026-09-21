@@ -15,6 +15,14 @@ export const APP_CONSTANTS = {
     LANGUAGE: 'app_language',
   },
 
+  ADMIN: {
+    SIDEBAR_COLLAPSED: 'admin_sidebar_collapsed',
+  },
+
+  STOREFRONT: {
+    SIDEBAR_COLLAPSED: 'storefront_sidebar_collapsed',
+  },
+
   HTTP: {
     TENANT_HEADER: 'X-Tenant-Id',
   },

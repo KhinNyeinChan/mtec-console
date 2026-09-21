@@ -30,8 +30,42 @@
     "email": "Email",
     "password": "Password"
   },
+  "admin": {
+    "brand": "MTEC",
+    "collapse_menu": "Collapse menu",
+    "expand_menu": "Expand menu",
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "products-list": "Product list",
+    "messages": "Messages",
+    "orders": "Order",
+    "calendar": "Calendar",
+    "activity": "Activity",
+    "statistics": "Static",
+    "documents": "Documents",
+    "chat": "Chat",
+    "settings": "Settings",
+    "notifications": "Notifications"
+  },
+  "storefront": {
+    "brand": "Store",
+    "collapse_menu": "Collapse menu",
+    "expand_menu": "Expand menu",
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "products-list": "Product list",
+    "categories": "Categories",
+    "orders": "Orders",
+    "customers": "Customers",
+    "reports": "Reports",
+    "settings": "Settings",
+    "notifications": "Notifications"
+  },
   "language": {
     "eng": "English",
-    "myan": "Myanmar"
+    "myan": "Myanmar",
+    "toggle": "Language"
   }
 }

@@ -1,0 +1,79 @@
+{
+  "primary": [
+    {
+      "id": "home",
+      "labelKey": "storefront.home",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5Z\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linejoin=\"round\"/></svg>",
+      "route": "/store/:tenantSlug",
+      "exact": true,
+      "show": true
+    },
+    {
+      "id": "dashboard",
+      "labelKey": "storefront.dashboard",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\"><rect x=\"4\" y=\"4\" width=\"7\" height=\"7\" rx=\"1.5\" stroke=\"currentColor\" stroke-width=\"1.7\"/><rect x=\"13\" y=\"4\" width=\"7\" height=\"7\" rx=\"1.5\" stroke=\"currentColor\" stroke-width=\"1.7\"/><rect x=\"4\" y=\"13\" width=\"7\" height=\"7\" rx=\"1.5\" stroke=\"currentColor\" stroke-width=\"1.7\"/><rect x=\"13\" y=\"13\" width=\"7\" height=\"7\" rx=\"1.5\" stroke=\"currentColor\" stroke-width=\"1.7\"/></svg>",
+      "route": "/store/:tenantSlug/dashboard",
+      "show": true
+    },
+    {
+      "id": "products",
+      "labelKey": "storefront.products",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M12 4a8 8 0 1 1-8 8\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\"/><path d=\"M12 4v8h8\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+      "route": "/store/:tenantSlug/products",
+      "show": true,
+      "children": [
+        {
+          "id": "products-list",
+          "labelKey": "storefront.products-list",
+          "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M12 4a8 8 0 1 1-8 8\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\"/><path d=\"M12 4v8h8\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+          "route": "/store/:tenantSlug/products/list",
+          "show": true
+        },
+        {
+          "id": "products-categories",
+          "labelKey": "storefront.categories",
+          "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M4 7h16M4 12h16M4 17h10\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\"/></svg>",
+          "route": "/store/:tenantSlug/products/categories",
+          "show": true
+        }
+      ]
+    },
+    {
+      "id": "orders",
+      "labelKey": "storefront.orders",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M7 8V6.8A4.8 4.8 0 0 1 11.8 2h.4A4.8 4.8 0 0 1 17 6.8V8\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\"/><path d=\"M6 8h12l-.8 11.2A2 2 0 0 1 15.2 21H8.8a2 2 0 0 1-2-1.8L6 8Z\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linejoin=\"round\"/></svg>",
+      "route": "/store/:tenantSlug/orders",
+      "show": true
+    },
+    {
+      "id": "customers",
+      "labelKey": "storefront.customers",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\"><circle cx=\"12\" cy=\"8\" r=\"3.5\" stroke=\"currentColor\" stroke-width=\"1.7\"/><path d=\"M5 19.5c1.8-3 4.2-4.5 7-4.5s5.2 1.5 7 4.5\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\"/></svg>",
+      "route": "/store/:tenantSlug/customers",
+      "show": true
+    },
+    {
+      "id": "reports",
+      "labelKey": "storefront.reports",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\"><rect x=\"3.5\" y=\"3.5\" width=\"17\" height=\"17\" rx=\"2\" stroke=\"currentColor\" stroke-width=\"1.7\"/><path d=\"M8 16V11M12 16V8M16 16v-3\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\"/></svg>",
+      "route": "/store/:tenantSlug/reports",
+      "show": false
+    }
+  ],
+  "footer": [
+    {
+      "id": "settings",
+      "labelKey": "storefront.settings",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\"><circle cx=\"12\" cy=\"12\" r=\"3\" stroke=\"currentColor\" stroke-width=\"1.7\"/><path d=\"M12 3.5v2.2M12 18.3v2.2M3.5 12h2.2M18.3 12h2.2M5.8 5.8l1.6 1.6M16.6 16.6l1.6 1.6M18.2 5.8l-1.6 1.6M7.4 16.6l-1.6 1.6\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\"/></svg>",
+      "route": "/store/:tenantSlug/settings",
+      "show": false
+    },
+    {
+      "id": "logout",
+      "labelKey": "auth.logout",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M10 4H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3M14 8l4 4-4 4M9 12h9\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+      "action": "logout",
+      "show": true
+    }
+  ]
+}

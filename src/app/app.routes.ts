@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './core/auth/auth.guard';
 import { guestGuard } from './core/auth/guest.guard';
 import { tenantResolver } from './core/tenant/tenant.resolver';
 
@@ -17,11 +16,17 @@ export const routes: Routes = [
   },
   {
     path: 'admin',
-    canActivate: [authGuard],
+    // TODO: re-enable authGuard once login UI is available
+    // canActivate: [authGuard],
     loadChildren: () => import('./features/admin/admin.routes').then((m) => m.ADMIN_ROUTES),
   },
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'admin',
+  },
+  {
     path: '**',
-    redirectTo: 'auth/login',
+    redirectTo: 'admin',
   },
 ];

@@ -30,8 +30,42 @@
     "email": "အီးမေးလ်",
     "password": "စကားဝှက်"
   },
+  "admin": {
+    "brand": "MTEC",
+    "collapse_menu": "မီနူးခေါက်သိမ်းမည်",
+    "expand_menu": "မီနူးချဲ့မည်",
+    "home": "ပင်မ",
+    "dashboard": "ဒက်ရှ်ဘုတ်",
+    "products": "ထုတ်ကုန်များ",
+    "products-list": "ထုတ်ကုန်စာရင်း",
+    "messages": "စာတိုများ",
+    "orders": "အော်ဒါ",
+    "calendar": "ပြက္ခဒိန်",
+    "activity": "လှုပ်ရှားမှု",
+    "statistics": "စာရင်းအင်း",
+    "documents": "စာရွက်စာတမ်းများ",
+    "chat": "စကားပြော",
+    "settings": "ဆက်တင်များ",
+    "notifications": "အကြောင်းကြားချက်များ"
+  },
+  "storefront": {
+    "brand": "ဆိုင်",
+    "collapse_menu": "မီနူးခေါက်သိမ်းမည်",
+    "expand_menu": "မီနူးချဲ့မည်",
+    "home": "ပင်မ",
+    "dashboard": "ဒက်ရှ်ဘုတ်",
+    "products": "ထုတ်ကုန်များ",
+    "products-list": "ထုတ်ကုန်စာရင်း",
+    "categories": "အမျိုးအစားများ",
+    "orders": "အော်ဒါများ",
+    "customers": "ဖောက်သည်များ",
+    "reports": "အစီရင်ခံစာများ",
+    "settings": "ဆက်တင်များ",
+    "notifications": "အကြောင်းကြားချက်များ"
+  },
   "language": {
     "eng": "အင်္ဂလိပ်",
-    "myan": "မြန်မာ"
+    "myan": "မြန်မာ",
+    "toggle": "ဘာသာစကား"
   }
 }

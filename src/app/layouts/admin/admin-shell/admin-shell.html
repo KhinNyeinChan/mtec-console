@@ -1,0 +1,11 @@
+<div class="admin-shell">
+  <app-admin-sidebar class="admin-shell__sidebar" (logout)="onLogout()" />
+
+  <div class="admin-shell__main">
+    <app-admin-header class="admin-shell__header" />
+
+    <main class="admin-shell__content">
+      <router-outlet />
+    </main>
+  </div>
+</div>
