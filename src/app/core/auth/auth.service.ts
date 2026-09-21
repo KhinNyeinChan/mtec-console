@@ -6,7 +6,15 @@ import { APP_CONSTANTS } from '../constants/app.constants';
 import { SKIP_LOADING_HEADER } from '../http/loading.interceptor';
 import { ApiResponse } from '../models/api-response.model';
 import { StorageService } from '../services/storage.service';
-import { LoginRequest, LoginResponse, RefreshRequest, User } from './auth.model';
+import {
+  LoginRequest,
+  LoginResponse,
+  RefreshRequest,
+  RegisterRequest,
+  ResetPasswordRequest,
+  User,
+  VerifyResetOtpRequest,
+} from './auth.model';
 import { AuthStore } from './auth.store';
 
 @Injectable({
@@ -47,6 +55,24 @@ export class AuthService {
       tap((response) => this.persistSession(response.data)),
       map((response) => response.data),
     );
+  }
+
+  register(request: RegisterRequest): Observable<User> {
+    return this.http.post<ApiResponse<User>>(API_ENDPOINTS.AUTH.REGISTER, request).pipe(
+      map((response) => response.data),
+    );
+  }
+
+  verifyResetOtp(request: VerifyResetOtpRequest): Observable<void> {
+    return this.http
+      .post<ApiResponse<void>>(API_ENDPOINTS.AUTH.VERIFY_RESET_OTP, request)
+      .pipe(map(() => undefined));
+  }
+
+  resetPassword(request: ResetPasswordRequest): Observable<void> {
+    return this.http
+      .post<ApiResponse<void>>(API_ENDPOINTS.AUTH.RESET_PASSWORD, request)
+      .pipe(map(() => undefined));
   }
 
   refresh(): Observable<string> {

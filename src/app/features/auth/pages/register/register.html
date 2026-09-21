@@ -1,0 +1,127 @@
+<div class="register-page">
+  <section class="register-panel" aria-labelledby="register-title">
+    <div class="register-panel__inner">
+      <div class="brand" aria-hidden="true">
+        <svg class="brand-mark" viewBox="0 0 48 40" fill="none">
+          <path d="M8 32 20 6h10L18 32H8Z" fill="var(--primary-color)" />
+          <path
+            d="M20 32 32 6h10L30 32H20Z"
+            fill="color-mix(in srgb, var(--primary-color) 55%, #003333)"
+          />
+        </svg>
+      </div>
+
+      <header class="register-header">
+        <h1 id="register-title" class="register-title">{{ 'auth.create_account' | translate }}</h1>
+        <p class="register-subtitle">{{ 'auth.register_details' | translate }}</p>
+      </header>
+
+      <form class="register-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <app-input-text
+          formControlName="userName"
+          label="auth.user_name"
+          name="userName"
+          autocomplete="name"
+          [error]="fieldError('userName')"
+          required
+        />
+
+        <app-input-text
+          formControlName="userId"
+          label="auth.user_id"
+          name="userId"
+          autocomplete="username"
+          [error]="fieldError('userId')"
+          required
+        />
+
+        <app-input-text
+          formControlName="email"
+          type="email"
+          label="auth.email"
+          name="email"
+          autocomplete="email"
+          [error]="fieldError('email')"
+          required
+        />
+
+        <app-input-text
+          formControlName="phone"
+          type="tel"
+          label="auth.phone"
+          name="phone"
+          autocomplete="tel"
+          [error]="fieldError('phone')"
+          required
+        />
+
+        <app-input-text
+          formControlName="password"
+          type="password"
+          label="auth.password"
+          name="password"
+          autocomplete="new-password"
+          [error]="fieldError('password')"
+          required
+        />
+
+        <app-input-text
+          formControlName="confirmPassword"
+          type="password"
+          label="auth.confirm_password"
+          name="confirmPassword"
+          autocomplete="new-password"
+          [error]="fieldError('confirmPassword')"
+          required
+        />
+
+        @if (errorMessage()) {
+          <p class="form-error" role="alert">{{ errorMessage() | translate }}</p>
+        }
+
+        <button class="register-submit" type="submit" [disabled]="submitting()">
+          <span>{{ 'auth.sign_up' | translate }}</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true">
+            <path
+              d="M4 10h10M10 5l5 5-5 5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </form>
+
+      <p class="legal">
+        {{ 'auth.agree_prefix' | translate }}
+        <a routerLink="/auth/terms">{{ 'auth.terms' | translate }}</a>
+        {{ 'auth.and' | translate }}
+        <a routerLink="/auth/privacy">{{ 'auth.privacy' | translate }}</a>
+      </p>
+
+      <p class="signin">
+        {{ 'auth.have_account' | translate }}
+        <a routerLink="/auth/login">{{ 'auth.login' | translate }}</a>
+      </p>
+    </div>
+  </section>
+
+  <aside class="promo-panel" aria-hidden="true">
+    <div class="promo-card">
+      <div class="promo-art">
+        <img
+          class="promo-illustration"
+          src="/assets/icons/login-right-side.svg"
+          alt=""
+        />
+      </div>
+
+      <div class="promo-copy">
+        <h2>{{ 'auth.promo_title' | translate }}</h2>
+        <p>{{ 'auth.promo_subtitle' | translate }}</p>
+      </div>
+    </div>
+  </aside>
+</div>

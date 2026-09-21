@@ -16,17 +16,17 @@ export const routes: Routes = [
   },
   {
     path: 'admin',
-    // TODO: re-enable authGuard once login UI is available
+    // TODO: re-enable authGuard once login is fully integrated
     // canActivate: [authGuard],
     loadChildren: () => import('./features/admin/admin.routes').then((m) => m.ADMIN_ROUTES),
   },
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'admin',
+    redirectTo: 'auth/login',
   },
   {
     path: '**',
-    redirectTo: 'admin',
+    redirectTo: 'auth/login',
   },
 ];

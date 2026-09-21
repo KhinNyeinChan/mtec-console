@@ -5,6 +5,23 @@ export interface LoginRequest {
   password: string;
 }
 
+export interface RegisterRequest {
+  displayName: string;
+  username: string;
+  email: string;
+  phone: string;
+  password: string;
+}
+
+export interface VerifyResetOtpRequest {
+  otp: string;
+}
+
+export interface ResetPasswordRequest {
+  otp: string;
+  password: string;
+}
+
 export interface RefreshRequest {
   refreshToken: string;
 }

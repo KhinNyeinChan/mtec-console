@@ -1,0 +1,98 @@
+<div class="login-page">
+  <section class="login-panel" aria-labelledby="login-title">
+    <div class="login-panel__inner">
+      <div class="brand" aria-hidden="true">
+        <svg class="brand-mark" viewBox="0 0 48 40" fill="none">
+          <path d="M8 32 20 6h10L18 32H8Z" fill="var(--primary-color)" />
+          <path
+            d="M20 32 32 6h10L30 32H20Z"
+            fill="color-mix(in srgb, var(--primary-color) 55%, #003333)"
+          />
+        </svg>
+      </div>
+
+      <header class="login-header">
+        <h1 id="login-title" class="login-title">{{ 'auth.welcome_back' | translate }}</h1>
+        <p class="login-subtitle">{{ 'auth.enter_details' | translate }}</p>
+      </header>
+
+      <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <app-input-text
+          formControlName="userId"
+          label="auth.user_id"
+          name="userId"
+          autocomplete="username"
+          [error]="fieldError('userId')"
+          required
+        />
+
+        <app-input-text
+          formControlName="password"
+          type="password"
+          label="auth.password"
+          name="password"
+          autocomplete="current-password"
+          [error]="fieldError('password')"
+          required
+        />
+
+        <div class="form-meta">
+          <label class="remember">
+            <input type="checkbox" formControlName="rememberMe" />
+            <span>{{ 'auth.remember_me' | translate }}</span>
+          </label>
+          <a class="forgot-link" routerLink="/auth/forgot-password">
+            {{ 'auth.forgot_password' | translate }}
+          </a>
+        </div>
+
+        @if (errorMessage()) {
+          <p class="form-error" role="alert">{{ errorMessage() | translate }}</p>
+        }
+
+        <button class="login-submit" type="submit" [disabled]="submitting()">
+          <span>{{ 'auth.login' | translate }}</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true">
+            <path
+              d="M4 10h10M10 5l5 5-5 5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </form>
+
+      <p class="legal">
+        {{ 'auth.agree_prefix' | translate }}
+        <a routerLink="/auth/terms">{{ 'auth.terms' | translate }}</a>
+        {{ 'auth.and' | translate }}
+        <a routerLink="/auth/privacy">{{ 'auth.privacy' | translate }}</a>
+      </p>
+
+      <p class="signup">
+        {{ 'auth.no_account' | translate }}
+        <a routerLink="/auth/register">{{ 'auth.sign_up' | translate }}</a>
+      </p>
+    </div>
+  </section>
+
+  <aside class="promo-panel" aria-hidden="true">
+    <div class="promo-card">
+      <div class="promo-art">
+        <img
+          class="promo-illustration"
+          src="/assets/icons/login-right-side.svg"
+          alt=""
+        />
+      </div>
+
+      <div class="promo-copy">
+        <h2>{{ 'auth.promo_title' | translate }}</h2>
+        <p>{{ 'auth.promo_subtitle' | translate }}</p>
+      </div>
+    </div>
+  </aside>
+</div>
