@@ -41,7 +41,7 @@
             <input type="checkbox" formControlName="rememberMe" />
             <span>{{ 'auth.remember_me' | translate }}</span>
           </label>
-          <a class="forgot-link" routerLink="/auth/forgot-password">
+          <a class="forgot-link" routerLink="/auth/admin/forgot-password">
             {{ 'auth.forgot_password' | translate }}
           </a>
         </div>
@@ -74,7 +74,7 @@
 
       <p class="signup">
         {{ 'auth.no_account' | translate }}
-        <a routerLink="/auth/register">{{ 'auth.sign_up' | translate }}</a>
+        <a routerLink="/auth/admin/register">{{ 'auth.sign_up' | translate }}</a>
       </p>
     </div>
   </section>

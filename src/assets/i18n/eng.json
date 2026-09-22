@@ -71,7 +71,22 @@
     "new_password": "New Password",
     "reset_password": "Reset Password",
     "reset_failed": "Could not reset password. Please try again",
-    "back_to_login": "Back to Login"
+    "back_to_login": "Back to Login",
+    "create_store": "Create Store",
+    "tenant_register_details": "Register your store and admin account",
+    "business_name": "Business Name",
+    "store_slug": "Store Slug",
+    "store_slug_hint": "Generated from the business name",
+    "admin_name": "Admin Name",
+    "admin_id": "Admin ID",
+    "business_name_required": "Business name is required",
+    "store_slug_required": "Store slug is required",
+    "admin_name_required": "Admin name is required",
+    "admin_id_required": "Admin ID is required",
+    "tenant_missing": "Store could not be identified from the address",
+    "email_otp_details": "Enter your email to receive a 4-digit OTP",
+    "send_otp": "Send OTP",
+    "otp_send_failed": "Could not send the OTP. Please try again"
   },
   "admin": {
     "brand": "MTEC",

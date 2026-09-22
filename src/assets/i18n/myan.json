@@ -71,7 +71,22 @@
     "new_password": "စကားဝှက်အသစ်",
     "reset_password": "စကားဝှက်ပြောင်းမည်",
     "reset_failed": "စကားဝှက်ပြောင်း၍မရပါ။ ထပ်မံကြိုးစားပါ",
-    "back_to_login": "လော့ဂ်အင်သို့ ပြန်သွားမည်"
+    "back_to_login": "လော့ဂ်အင်သို့ ပြန်သွားမည်",
+    "create_store": "ဆိုင်ဖန်တီးမည်",
+    "tenant_register_details": "ဆိုင်နှင့် စီမံအကောင့်ကို စာရင်းသွင်းပါ",
+    "business_name": "လုပ်ငန်းအမည်",
+    "store_slug": "ဆိုင် Slug",
+    "store_slug_hint": "လုပ်ငန်းအမည်မှ အလိုအလျောက် ဖန်တီးသည်",
+    "admin_name": "စီမံအမည်",
+    "admin_id": "စီမံ ID",
+    "business_name_required": "လုပ်ငန်းအမည် လိုအပ်ပါသည်",
+    "store_slug_required": "ဆိုင် Slug လိုအပ်ပါသည်",
+    "admin_name_required": "စီမံအမည် လိုအပ်ပါသည်",
+    "admin_id_required": "စီမံ ID လိုအပ်ပါသည်",
+    "tenant_missing": "လိပ်စာမှ ဆိုင်ကို မဖော်ထုတ်နိုင်ပါ",
+    "email_otp_details": "ဂဏန်း ၄ လုံး OTP ရရှိရန် အီးမေးလ် ထည့်ပါ",
+    "send_otp": "OTP ပို့မည်",
+    "otp_send_failed": "OTP ပို့၍မရပါ။ ထပ်မံကြိုးစားပါ"
   },
   "admin": {
     "brand": "MTEC",

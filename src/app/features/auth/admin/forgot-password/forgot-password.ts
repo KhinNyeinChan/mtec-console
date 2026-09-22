@@ -34,10 +34,15 @@ export class ForgotPasswordPage {
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
 
-  readonly step = signal<'otp' | 'password'>('otp');
+  readonly step = signal<'email' | 'otp' | 'password'>('email');
   readonly submitting = signal(false);
   readonly errorMessage = signal('');
+  readonly email = signal('');
   readonly verifiedOtp = signal('');
+
+  readonly emailForm = this.fb.nonNullable.group({
+    email: ['', [Validators.required, Validators.email]],
+  });
 
   readonly otpForm = this.fb.nonNullable.group({
     d0: ['', [Validators.required, Validators.pattern(/^\d$/)]],
@@ -55,6 +60,29 @@ export class ForgotPasswordPage {
   );
 
   readonly otpDigits = ['d0', 'd1', 'd2', 'd3'] as const;
+
+  onEmailSubmit(): void {
+    this.errorMessage.set('');
+    this.emailForm.markAllAsTouched();
+
+    if (this.emailForm.invalid || this.submitting()) {
+      return;
+    }
+
+    const email = this.emailForm.getRawValue().email.trim();
+    this.submitting.set(true);
+
+    this.auth
+      .requestResetOtp({ email })
+      .pipe(finalize(() => this.submitting.set(false)))
+      .subscribe({
+        next: () => {
+          this.email.set(email);
+          this.step.set('otp');
+        },
+        error: () => this.errorMessage.set('auth.otp_send_failed'),
+      });
+  }
 
   onOtpInput(index: number, event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -103,7 +131,7 @@ export class ForgotPasswordPage {
     this.submitting.set(true);
 
     this.auth
-      .verifyResetOtp({ otp })
+      .verifyResetOtp({ email: this.email(), otp })
       .pipe(finalize(() => this.submitting.set(false)))
       .subscribe({
         next: () => {
@@ -126,12 +154,23 @@ export class ForgotPasswordPage {
     this.submitting.set(true);
 
     this.auth
-      .resetPassword({ otp: this.verifiedOtp(), password })
+      .resetPassword({ email: this.email(), otp: this.verifiedOtp(), password })
       .pipe(finalize(() => this.submitting.set(false)))
       .subscribe({
-        next: () => void this.router.navigateByUrl('/auth/login'),
+        next: () => void this.router.navigateByUrl('/auth/admin/login'),
         error: () => this.errorMessage.set('auth.reset_failed'),
       });
+  }
+
+  emailError(): string {
+    const control = this.emailForm.controls.email;
+    if (!control.touched || !control.invalid) {
+      return '';
+    }
+    if (control.hasError('email')) {
+      return 'auth.email_invalid';
+    }
+    return 'auth.email_required';
   }
 
   passwordFieldError(controlName: 'password' | 'confirmPassword'): string {

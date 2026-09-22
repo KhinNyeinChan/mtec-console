@@ -4,6 +4,18 @@ import { tenantResolver } from './core/tenant/tenant.resolver';
 
 export const routes: Routes = [
   {
+    path: 'login',
+    loadComponent: () =>
+      import('./features/auth/tenant/login/login').then((m) => m.TenantLoginPage),
+  },
+  {
+    path: 'forgot-password',
+    loadComponent: () =>
+      import('./features/auth/tenant/forgot-password/forgot-password').then(
+        (m) => m.TenantForgotPasswordPage,
+      ),
+  },
+  {
     path: 'auth',
     canActivate: [guestGuard],
     loadChildren: () => import('./features/auth/auth.routes').then((m) => m.AUTH_ROUTES),

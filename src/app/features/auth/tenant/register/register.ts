@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   AbstractControl,
   FormBuilder,
@@ -21,15 +22,23 @@ function passwordsMatch(group: AbstractControl): ValidationErrors | null {
   return password === confirmPassword ? null : { passwordMismatch: true };
 }
 
+function toStoreSlug(businessName: string): string {
+  return businessName
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 @Component({
-  selector: 'app-register-page',
+  selector: 'app-tenant-register-page',
   standalone: true,
   imports: [ReactiveFormsModule, RouterLink, TranslatePipe, InputText],
   templateUrl: './register.html',
   styleUrl: './register.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegisterPage {
+export class TenantRegisterPage {
   private readonly fb = inject(FormBuilder);
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
@@ -39,8 +48,10 @@ export class RegisterPage {
 
   readonly form = this.fb.nonNullable.group(
     {
-      userName: ['', [Validators.required]],
-      userId: ['', [Validators.required]],
+      businessName: ['', [Validators.required]],
+      storeSlug: [{ value: '', disabled: true }],
+      adminName: ['', [Validators.required]],
+      adminId: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -48,6 +59,12 @@ export class RegisterPage {
     },
     { validators: passwordsMatch },
   );
+
+  constructor() {
+    this.form.controls.businessName.valueChanges.pipe(takeUntilDestroyed()).subscribe((name) => {
+      this.form.controls.storeSlug.setValue(toStoreSlug(name));
+    });
+  }
 
   onSubmit(): void {
     this.errorMessage.set('');
@@ -57,13 +74,22 @@ export class RegisterPage {
       return;
     }
 
-    const { userName, userId, email, phone, password } = this.form.getRawValue();
+    const { businessName, storeSlug, adminName, adminId, email, phone, password } =
+      this.form.getRawValue();
+
+    if (!storeSlug) {
+      this.errorMessage.set('auth.store_slug_required');
+      return;
+    }
+
     this.submitting.set(true);
 
     this.auth
-      .register({
-        displayName: userName.trim(),
-        username: userId.trim(),
+      .registerTenant({
+        businessName: businessName.trim(),
+        storeSlug,
+        adminName: adminName.trim(),
+        adminId: adminId.trim(),
         email: email.trim(),
         phone: phone.trim(),
         password,
@@ -76,7 +102,15 @@ export class RegisterPage {
   }
 
   fieldError(
-    controlName: 'userName' | 'userId' | 'email' | 'phone' | 'password' | 'confirmPassword',
+    controlName:
+      | 'businessName'
+      | 'storeSlug'
+      | 'adminName'
+      | 'adminId'
+      | 'email'
+      | 'phone'
+      | 'password'
+      | 'confirmPassword',
   ): string {
     const control = this.form.controls[controlName];
     if (!control.touched || !control.invalid) {
@@ -92,8 +126,10 @@ export class RegisterPage {
 
     if (control.hasError('required')) {
       const requiredKeys = {
-        userName: 'auth.user_name_required',
-        userId: 'auth.user_id_required',
+        businessName: 'auth.business_name_required',
+        storeSlug: 'auth.store_slug_required',
+        adminName: 'auth.admin_name_required',
+        adminId: 'auth.admin_id_required',
         email: 'auth.email_required',
         phone: 'auth.phone_required',
         password: 'auth.password_required',

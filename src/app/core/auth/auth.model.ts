@@ -5,6 +5,13 @@ export interface LoginRequest {
   password: string;
 }
 
+export interface TenantLoginRequest {
+  tenantId: string;
+  username: string;
+  email: string;
+  password: string;
+}
+
 export interface RegisterRequest {
   displayName: string;
   username: string;
@@ -13,11 +20,45 @@ export interface RegisterRequest {
   password: string;
 }
 
+export interface TenantRegisterRequest {
+  businessName: string;
+  storeSlug: string;
+  adminName: string;
+  adminId: string;
+  email: string;
+  phone: string;
+  password: string;
+}
+
+export interface ForgotPasswordRequest {
+  email: string;
+}
+
 export interface VerifyResetOtpRequest {
+  email: string;
   otp: string;
 }
 
 export interface ResetPasswordRequest {
+  email: string;
+  otp: string;
+  password: string;
+}
+
+export interface TenantResetOtpRequest {
+  tenantId: string;
+  email: string;
+}
+
+export interface TenantVerifyResetOtpRequest {
+  tenantId: string;
+  email: string;
+  otp: string;
+}
+
+export interface TenantResetPasswordRequest {
+  tenantId: string;
+  email: string;
   otp: string;
   password: string;
 }

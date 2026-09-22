@@ -7,11 +7,17 @@ import { SKIP_LOADING_HEADER } from '../http/loading.interceptor';
 import { ApiResponse } from '../models/api-response.model';
 import { StorageService } from '../services/storage.service';
 import {
+  ForgotPasswordRequest,
   LoginRequest,
   LoginResponse,
+  TenantLoginRequest,
   RefreshRequest,
   RegisterRequest,
   ResetPasswordRequest,
+  TenantRegisterRequest,
+  TenantResetOtpRequest,
+  TenantResetPasswordRequest,
+  TenantVerifyResetOtpRequest,
   User,
   VerifyResetOtpRequest,
 } from './auth.model';
@@ -57,10 +63,31 @@ export class AuthService {
     );
   }
 
+  loginTenant(request: TenantLoginRequest): Observable<LoginResponse> {
+    return this.http
+      .post<ApiResponse<LoginResponse>>(API_ENDPOINTS.AUTH.TENANT_LOGIN, request)
+      .pipe(
+        tap((response) => this.persistSession(response.data)),
+        map((response) => response.data),
+      );
+  }
+
   register(request: RegisterRequest): Observable<User> {
     return this.http.post<ApiResponse<User>>(API_ENDPOINTS.AUTH.REGISTER, request).pipe(
       map((response) => response.data),
     );
+  }
+
+  registerTenant(request: TenantRegisterRequest): Observable<User> {
+    return this.http.post<ApiResponse<User>>(API_ENDPOINTS.TENANT.REGISTER, request).pipe(
+      map((response) => response.data),
+    );
+  }
+
+  requestResetOtp(request: ForgotPasswordRequest): Observable<void> {
+    return this.http
+      .post<ApiResponse<void>>(API_ENDPOINTS.AUTH.FORGOT_PASSWORD, request)
+      .pipe(map(() => undefined));
   }
 
   verifyResetOtp(request: VerifyResetOtpRequest): Observable<void> {
@@ -72,6 +99,24 @@ export class AuthService {
   resetPassword(request: ResetPasswordRequest): Observable<void> {
     return this.http
       .post<ApiResponse<void>>(API_ENDPOINTS.AUTH.RESET_PASSWORD, request)
+      .pipe(map(() => undefined));
+  }
+
+  requestTenantResetOtp(request: TenantResetOtpRequest): Observable<void> {
+    return this.http
+      .post<ApiResponse<void>>(API_ENDPOINTS.AUTH.TENANT_FORGOT_PASSWORD, request)
+      .pipe(map(() => undefined));
+  }
+
+  verifyTenantResetOtp(request: TenantVerifyResetOtpRequest): Observable<void> {
+    return this.http
+      .post<ApiResponse<void>>(API_ENDPOINTS.AUTH.TENANT_VERIFY_RESET_OTP, request)
+      .pipe(map(() => undefined));
+  }
+
+  resetTenantPassword(request: TenantResetPasswordRequest): Observable<void> {
+    return this.http
+      .post<ApiResponse<void>>(API_ENDPOINTS.AUTH.TENANT_RESET_PASSWORD, request)
       .pipe(map(() => undefined));
   }
 

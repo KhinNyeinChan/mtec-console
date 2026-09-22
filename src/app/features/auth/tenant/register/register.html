@@ -12,26 +12,45 @@
       </div>
 
       <header class="register-header">
-        <h1 id="register-title" class="register-title">{{ 'auth.create_account' | translate }}</h1>
-        <p class="register-subtitle">{{ 'auth.register_details' | translate }}</p>
+        <h1 id="register-title" class="register-title">
+          {{ 'auth.create_store' | translate }}
+        </h1>
+        <p class="register-subtitle">{{ 'auth.tenant_register_details' | translate }}</p>
       </header>
 
       <form class="register-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
         <app-input-text
-          formControlName="userName"
-          label="auth.user_name"
-          name="userName"
-          autocomplete="name"
-          [error]="fieldError('userName')"
+          formControlName="businessName"
+          label="auth.business_name"
+          name="businessName"
+          autocomplete="organization"
+          [error]="fieldError('businessName')"
           required
         />
 
         <app-input-text
-          formControlName="userId"
-          label="auth.user_id"
-          name="userId"
+          formControlName="storeSlug"
+          label="auth.store_slug"
+          name="storeSlug"
+          helperText="auth.store_slug_hint"
+          [error]="fieldError('storeSlug')"
+        />
+
+        <app-input-text
+          formControlName="adminName"
+          label="auth.admin_name"
+          name="adminName"
+          autocomplete="name"
+          [error]="fieldError('adminName')"
+          required
+        />
+
+        <app-input-text
+          formControlName="adminId"
+          label="auth.admin_id"
+          name="adminId"
           autocomplete="username"
-          [error]="fieldError('userId')"
+          [error]="fieldError('adminId')"
           required
         />
 
@@ -80,7 +99,7 @@
         }
 
         <button class="register-submit" type="submit" [disabled]="submitting()">
-          <span>{{ 'auth.sign_up' | translate }}</span>
+          <span>{{ 'auth.create_store' | translate }}</span>
           <svg viewBox="0 0 20 20" aria-hidden="true">
             <path
               d="M4 10h10M10 5l5 5-5 5"
@@ -103,7 +122,7 @@
 
       <p class="signin">
         {{ 'auth.have_account' | translate }}
-        <a routerLink="/auth/login">{{ 'auth.login' | translate }}</a>
+        <a routerLink="/auth/tenant/login">{{ 'auth.login' | translate }}</a>
       </p>
     </div>
   </section>
@@ -111,11 +130,7 @@
   <aside class="promo-panel" aria-hidden="true">
     <div class="promo-card">
       <div class="promo-art">
-        <img
-          class="promo-illustration"
-          src="/assets/icons/login-right-side.svg"
-          alt=""
-        />
+        <img class="promo-illustration" src="/assets/icons/login-right-side.svg" alt="" />
       </div>
 
       <div class="promo-copy">
