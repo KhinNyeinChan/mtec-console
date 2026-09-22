@@ -1,0 +1,30 @@
+<div class="simple-search">
+  <div class="search-container">
+    <button type="button" class="search-btn" id="btnSearch" [attr.aria-label]="'common.search' | translate"
+      (click)="filterSearch()">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path
+          d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
+          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M17.5 17.5L13.875 13.875" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
+    </button>
+    <input id="isInputSearch" type="text" autocomplete="off" [placeholder]="placeholder() | translate" [value]="value()"
+      (input)="onInput($event)" (keyup.enter)="filterSearch()" />
+  </div>
+
+  @if (showAdvanced()) {
+  <button type="button" class="adv-btn" id="btnToggleSearch" [attr.title]="'adv_search.advanced' | translate"
+    [attr.aria-label]="'adv_search.advanced' | translate" (click)="toggleAdvanced()">
+    <svg width="22" height="20" viewBox="0 0 22 20" fill="none" aria-hidden="true">
+      <path d="M21 1H1L9 10.46V17L13 19V10.46L21 1Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </svg>
+  </button>
+  }
+
+  @if (showNew()) {
+  <app-button [text]="newLabel()" variant="primary" size="sm" type="button" (click)="goNew()" />
+  }
+</div>

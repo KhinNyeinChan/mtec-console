@@ -8,7 +8,7 @@
   justify-content: center;
   box-sizing: border-box;
   margin: 0;
-  border-radius: 999px;
+  border-radius: 6px;
   border-width: 2px;
   border-style: solid;
   font-family: inherit;
@@ -32,13 +32,13 @@
 
 .btn-lg {
   min-width: 168px;
-  height: 42px;
+  height: 36px;
   padding: 0 32px;
 }
 
 .btn-sm {
   min-width: 96px;
-  height: 40px;
+  height: 34px;
   padding: 0 22px;
 }
 

@@ -1,0 +1,165 @@
+<div class="adv-search">
+  <div class="filter-list">
+    @for (row of rows(); track row.key; let i = $index; let last = $last) {
+      <div class="filter-row">
+        <app-dropdown-select
+          class="field-select"
+          [options]="fieldOptions()"
+          [value]="row.itemid"
+          (valueChange)="onFieldChange(i, $event)"
+        />
+
+        @if (!isSingleType(row.datatype)) {
+          <app-dropdown-select
+            class="condition-select"
+            [options]="conditionOptions(row)"
+            [value]="row.condition"
+            (valueChange)="onConditionChange(i, $event)"
+          />
+        }
+
+        @if (row.datatype === 'simplesearch') {
+          <input
+            class="control value-input"
+            type="text"
+            autocomplete="off"
+            spellcheck="false"
+            [value]="row.t1"
+            (input)="onValueChange(i, 't1', $event)"
+            (keyup.enter)="doFilter()"
+          />
+        }
+
+        @if (isLovType(row.datatype)) {
+          <app-dropdown-select
+            class="lov-select"
+            [options]="typeOptions(row.datatype)"
+            [value]="row.t1"
+            (valueChange)="onLovChange(i, $event)"
+          />
+        }
+
+        @if (!isSingleType(row.datatype)) {
+          <div class="value-cell" [class.value-range]="isBetween(row)">
+            @if (row.datatype === 'string' && row.t3 !== 'true') {
+              <input
+                class="control value-input"
+                type="text"
+                autocomplete="off"
+                spellcheck="false"
+                [value]="row.t1"
+                (input)="onValueChange(i, 't1', $event)"
+                (keyup.enter)="doFilter()"
+              />
+            }
+
+            @if (row.datatype === 'numeric' && row.t3 !== 'true') {
+              <input
+                class="control value-input"
+                type="number"
+                autocomplete="off"
+                spellcheck="false"
+                [value]="row.t1"
+                (input)="onValueChange(i, 't1', $event)"
+                (keyup.enter)="doFilter()"
+              />
+            }
+
+            @if (row.datatype === 'numeric' && row.t3 === 'true') {
+              <input
+                class="control value-input"
+                type="number"
+                autocomplete="off"
+                spellcheck="false"
+                [value]="row.t1"
+                (input)="onValueChange(i, 't1', $event)"
+                (keyup.enter)="doFilter()"
+              />
+              <input
+                class="control value-input"
+                type="number"
+                autocomplete="off"
+                spellcheck="false"
+                [value]="row.t2"
+                (input)="onValueChange(i, 't2', $event)"
+                (keyup.enter)="doFilter()"
+              />
+            }
+
+            @if (row.datatype === 'date' && row.t3 !== 'true') {
+              <input
+                class="control value-input"
+                type="date"
+                autocomplete="off"
+                spellcheck="false"
+                [value]="row.t1"
+                (input)="onValueChange(i, 't1', $event)"
+                (keyup.enter)="doFilter()"
+              />
+            }
+
+            @if (row.datatype === 'date' && row.t3 === 'true') {
+              <input
+                class="control value-input"
+                type="date"
+                [value]="row.t1"
+                (input)="onValueChange(i, 't1', $event)"
+                (keyup.enter)="doFilter()"
+              />
+              <input
+                class="control value-input"
+                type="date"
+                [value]="row.t2"
+                (input)="onValueChange(i, 't2', $event)"
+                (keyup.enter)="doFilter()"
+              />
+            }
+          </div>
+        }
+
+        <div class="row-actions">
+          <button
+            type="button"
+            class="icon-btn filter-btn"
+            [attr.title]="'adv_search.filter' | translate"
+            [attr.aria-label]="'adv_search.filter' | translate"
+            (click)="doFilter()"
+          >
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <circle cx="8.5" cy="8.5" r="5.25" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <path d="M12.5 12.5 17 17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            class="icon-btn remove-btn"
+            [attr.title]="'adv_search.remove_filter' | translate"
+            [attr.aria-label]="'adv_search.remove_filter' | translate"
+            (click)="removeFilter(i)"
+          >
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <circle cx="10" cy="10" r="7.25" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <path d="M6.5 10h7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+          </button>
+
+          @if (last) {
+            <button
+              type="button"
+              class="icon-btn add-btn"
+              [attr.title]="'adv_search.add_filter' | translate"
+              [attr.aria-label]="'adv_search.add_filter' | translate"
+              (click)="addFilter()"
+            >
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <circle cx="10" cy="10" r="7.25" fill="none" stroke="currentColor" stroke-width="1.8" />
+                <path d="M10 6.5v7M6.5 10h7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              </svg>
+            </button>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>

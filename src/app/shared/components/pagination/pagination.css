@@ -5,7 +5,7 @@
 
 .pagination {
   display: inline-flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: center;
   gap: 16px;
   box-sizing: border-box;
@@ -13,7 +13,7 @@
   min-height: 52px;
   padding: 6px 8px 6px 12px;
   background: #fff;
-  border-radius: 999px;
+  border-radius: 6px;
   overflow: visible;
   box-shadow: 0 8px 24px color-mix(in srgb, var(--primary-text-color) 6%, transparent);
 }
@@ -58,7 +58,7 @@
 .nav-btn:hover:not(:disabled),
 .page-btn:hover:not(.active) {
   background-color: var(--secondary-color);
-  border-radius: 999px;
+  border-radius: 6px;
 }
 
 .nav-btn:disabled {
@@ -70,7 +70,7 @@
   min-width: 32px;
   height: 32px;
   padding: 0 6px;
-  border-radius: 999px;
+  border-radius: 6px;
 }
 
 .page-btn.active {
@@ -109,7 +109,7 @@
   margin: 0;
   padding: 0 12px 0 14px;
   border: 1px solid var(--primary-border-color);
-  border-radius: 999px;
+  border-radius: 6px;
   background: #fff;
   color: var(--primary-text-color);
   font-family: inherit;
@@ -151,7 +151,7 @@
   list-style: none;
   background: #fff;
   border: 1px solid var(--primary-border-color);
-  border-radius: 12px;
+  border-radius: 6px;
   box-shadow: 0 8px 20px color-mix(in srgb, var(--primary-text-color) 8%, transparent);
 }
 

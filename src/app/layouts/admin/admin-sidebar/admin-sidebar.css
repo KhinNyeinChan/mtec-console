@@ -268,7 +268,7 @@
   position: absolute;
   left: calc(100% + 12px);
   top: 50%;
-  z-index: 30;
+  z-index: 9999;
   padding: 8px 12px;
   border-radius: 8px;
   background: var(--primary-text-color);
@@ -287,7 +287,7 @@
   position: absolute;
   left: calc(100% + 4px);
   top: 50%;
-  z-index: 31;
+  z-index: 9999;
   width: 0;
   height: 0;
   border-top: 6px solid transparent;

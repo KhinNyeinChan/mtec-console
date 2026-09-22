@@ -7,7 +7,7 @@
   display: flex;
   height: 100%;
   min-height: 100vh;
-  background: color-mix(in srgb, var(--secondary-color) 55%, #f4f6f8);
+  background: color-mix(in srgb, var(--secondary-color) 20%, #f4f6f8);
 }
 
 .admin-shell__sidebar {
@@ -16,6 +16,7 @@
   position: sticky;
   top: 0;
   align-self: flex-start;
+  z-index: 30;
 }
 
 .admin-shell__main {
@@ -35,6 +36,13 @@
 .admin-shell__content {
   flex: 1 1 auto;
   min-width: 0;
+  max-width: 100%;
   padding: 24px;
   overflow: auto;
+}
+
+@media (max-width: 768px) {
+  .admin-shell__content {
+    padding: 16px;
+  }
 }

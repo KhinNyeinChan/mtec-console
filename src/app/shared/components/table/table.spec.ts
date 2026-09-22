@@ -4,7 +4,8 @@ import {
   provideSharedTestTranslate,
   seedSharedTestTranslate,
 } from '../../testing/provide-shared-translate';
-import { Table, TableColumn } from './table';
+import { TableColumn } from '../../models/table.model';
+import { Table } from './table';
 
 interface DemoRow {
   id: number;
@@ -44,37 +45,16 @@ describe('Table', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should render headers, rows, sticky actions, and total', () => {
+  it('should render headers, rows, and total', () => {
     const headers = Array.from(
       fixture.nativeElement.querySelectorAll('thead th') as NodeListOf<HTMLElement>,
     ).map((cell) => cell.textContent?.trim());
 
-    expect(headers).toEqual(['Name', 'Role', 'Actions']);
+    expect(headers).toEqual(['Name', 'Role']);
     expect(fixture.nativeElement.querySelectorAll('tbody tr').length).toBe(2);
-    expect(fixture.nativeElement.querySelector('.actions-col')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('.actions-col')).toBeNull();
     expect(fixture.nativeElement.querySelector('.total')?.textContent).toContain('2 records');
     expect(fixture.nativeElement.querySelector('app-pagination')).toBeTruthy();
-  });
-
-  it('should emit action events', () => {
-    const viewed = vi.fn();
-    const edited = vi.fn();
-    const deleted = vi.fn();
-
-    fixture.componentInstance.view.subscribe(viewed);
-    fixture.componentInstance.edit.subscribe(edited);
-    fixture.componentInstance.delete.subscribe(deleted);
-
-    const buttons = fixture.nativeElement.querySelectorAll(
-      '.action-btn',
-    ) as NodeListOf<HTMLButtonElement>;
-    buttons[0].click();
-    buttons[1].click();
-    buttons[2].click();
-
-    expect(viewed).toHaveBeenCalledWith(rows[0]);
-    expect(edited).toHaveBeenCalledWith(rows[0]);
-    expect(deleted).toHaveBeenCalledWith(rows[0]);
   });
 
   it('should show empty state when there are no rows', () => {

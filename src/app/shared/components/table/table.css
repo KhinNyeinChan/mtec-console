@@ -1,6 +1,8 @@
 :host {
   display: block;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .table-shell {
@@ -12,6 +14,8 @@
 
 .table-scroll {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   overflow-x: auto;
   border: 1px solid var(--primary-border-color);
   border-radius: 12px;
@@ -48,6 +52,7 @@ tbody td {
   line-height: 1.4;
   border-bottom: 1px solid color-mix(in srgb, var(--primary-border-color) 70%, white);
   vertical-align: middle;
+  overflow-wrap: anywhere;
 }
 
 tbody tr:last-child td {
@@ -64,70 +69,6 @@ tbody tr:hover td {
 
 .align-right {
   text-align: right;
-}
-
-.actions-col {
-  position: sticky;
-  right: 0;
-  z-index: 2;
-  width: 132px;
-  min-width: 132px;
-  text-align: center;
-  background: #fff;
-  box-shadow: -8px 0 12px color-mix(in srgb, var(--primary-text-color) 4%, transparent);
-}
-
-thead .actions-col {
-  z-index: 3;
-  background: var(--secondary-color);
-}
-
-tbody tr:hover .actions-col {
-  background: color-mix(in srgb, var(--secondary-color) 65%, white);
-}
-
-.actions {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-}
-
-.action-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 8px;
-  background: transparent;
-  color: var(--primary-color);
-  cursor: pointer;
-}
-
-.action-btn svg {
-  width: 18px;
-  height: 18px;
-}
-
-.action-btn:hover {
-  background: var(--secondary-color);
-}
-
-.action-danger {
-  color: var(--danger-color);
-}
-
-.action-danger:hover {
-  background: color-mix(in srgb, var(--danger-color) 10%, white);
-}
-
-.action-btn:focus-visible {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
 }
 
 .table-footer {

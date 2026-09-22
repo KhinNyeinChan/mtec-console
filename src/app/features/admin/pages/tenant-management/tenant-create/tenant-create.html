@@ -1,0 +1,51 @@
+<form class="form-page" [formGroup]="form" (ngSubmit)="onSave()" novalidate>
+  <header class="form-page-header">
+    <h1 class="form-page-title">{{ 'admin.tenant_create' | translate }}</h1>
+    <div class="form-page-actions">
+      @for (button of actions; track button.text) {
+        <app-button
+          [text]="button.text"
+          [variant]="button.variant"
+          [size]="button.size"
+          [type]="button.type"
+          (click)="onAction(button.action)"
+        />
+      }
+    </div>
+  </header>
+
+  <div class="form-page-body">
+    <div class="form-grid">
+      <app-input-text formControlName="businessName" label="admin.business_name" name="businessName"
+        autocomplete="organization" [error]="fieldError('businessName')" required />
+
+      <app-input-text formControlName="storeSlug" label="admin.store_slug" name="storeSlug"
+        [error]="fieldError('storeSlug')" />
+
+      <app-input-text formControlName="adminName" label="admin.admin_name" name="adminName" autocomplete="name"
+        [error]="fieldError('adminName')" required />
+
+      <app-input-text formControlName="adminId" label="auth.admin_id" name="adminId" autocomplete="username"
+        [error]="fieldError('adminId')" required />
+
+      <app-input-text formControlName="email" type="email" label="admin.tenant_email" name="email" autocomplete="email"
+        [error]="fieldError('email')" required />
+
+      <app-input-text formControlName="phone" type="tel" label="admin.tenant_phone" name="phone" autocomplete="tel"
+        [error]="fieldError('phone')" required />
+
+      <app-dropdown-select formControlName="status" label="admin.status" [options]="statusOptions()"
+        [error]="fieldError('status')" required />
+
+      <app-input-text formControlName="password" type="password" label="auth.password" name="password"
+        autocomplete="new-password" [error]="fieldError('password')" required />
+
+      <app-input-text class="span-2" formControlName="confirmPassword" type="password" label="auth.confirm_password"
+        name="confirmPassword" autocomplete="new-password" [error]="fieldError('confirmPassword')" required />
+
+      @if (saved()) {
+      <p class="form-saved span-2" role="status">{{ 'admin.tenant_saved' | translate }}</p>
+      }
+    </div>
+  </div>
+</form>

@@ -1,0 +1,134 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.adv-search {
+  width: 100%;
+}
+
+.filter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: visible;
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 40px;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.filter-row:hover {
+  background: var(--secondary-color);
+}
+
+.filter-row:focus-within {
+  position: relative;
+  z-index: 2;
+}
+
+.control {
+  box-sizing: border-box;
+  height: 36px;
+  padding: 0 10px;
+  border: 2px solid #d9d9d9;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--primary-text-color);
+  font-family: inherit;
+  font-size: var(--fs-small);
+  font-weight: var(--default-font-weight);
+  line-height: 1.2;
+}
+
+.control:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.field-select,
+.condition-select,
+.lov-select {
+  width: auto;
+  flex: 1 1 180px;
+  min-width: min(100%, 160px);
+  max-width: 100%;
+}
+
+.value-cell {
+  display: flex;
+  gap: 8px;
+  width: auto;
+  flex: 1 1 220px;
+  min-width: min(100%, 180px);
+  max-width: 100%;
+}
+
+.value-input {
+  width: 100%;
+  min-width: 0;
+}
+
+.value-range .value-input {
+  width: 50%;
+}
+
+.row-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 2px solid #d9d9d9;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--secondary-text-color);
+  cursor: pointer;
+}
+
+.icon-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.icon-btn:hover {
+  border-color: var(--primary-color);
+  background: #fff;
+}
+
+.filter-btn:hover {
+  color: var(--primary-text-color);
+}
+
+.add-btn,
+.remove-btn {
+  color: var(--primary-color);
+}
+
+.icon-btn:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+
+  .field-select,
+  .condition-select,
+  .lov-select,
+  .value-cell {
+    flex-basis: 100%;
+  }
+}

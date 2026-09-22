@@ -1,18 +1,17 @@
 {
   "primary": [
     {
-      "id": "home",
-      "labelKey": "admin.home",
-      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5Z\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linejoin=\"round\"/></svg>",
-      "route": "/admin",
-      "exact": true,
-      "show": true
-    },
-    {
       "id": "dashboard",
       "labelKey": "admin.dashboard",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\"><rect x=\"4\" y=\"4\" width=\"7\" height=\"7\" rx=\"1.5\" stroke=\"currentColor\" stroke-width=\"1.7\"/><rect x=\"13\" y=\"4\" width=\"7\" height=\"7\" rx=\"1.5\" stroke=\"currentColor\" stroke-width=\"1.7\"/><rect x=\"4\" y=\"13\" width=\"7\" height=\"7\" rx=\"1.5\" stroke=\"currentColor\" stroke-width=\"1.7\"/><rect x=\"13\" y=\"13\" width=\"7\" height=\"7\" rx=\"1.5\" stroke=\"currentColor\" stroke-width=\"1.7\"/></svg>",
       "route": "/admin/dashboard",
+      "show": true
+    },
+    {
+      "id": "tenants",
+      "labelKey": "admin.tenants",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M4 20.5V5.5A1.5 1.5 0 0 1 5.5 4h7A1.5 1.5 0 0 1 14 5.5V20.5\" stroke=\"currentColor\" stroke-width=\"1.7\"/><path d=\"M14 10h4.5A1.5 1.5 0 0 1 20 11.5v9\" stroke=\"currentColor\" stroke-width=\"1.7\"/><path d=\"M7 8h4M7 12h4M7 16h4\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\"/></svg>",
+      "route": "/admin/tenants",
       "show": true
     },
     {
