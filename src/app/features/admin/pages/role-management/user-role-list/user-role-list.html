@@ -1,0 +1,29 @@
+<section class="list-page">
+  <header class="list-page-header">
+    <h1 class="list-page-title">{{ 'admin.user_role_list' | translate }}</h1>
+    <div class="list-page-simple-search">
+      <app-simple-search
+        placeholder="admin.user_role_search"
+        [value]="keyword()"
+        showAdvanced
+        showNew
+        (search)="onSimpleSearch($event)"
+        (advancedToggle)="toggleAdvanced()"
+        (create)="goNew()"
+      />
+    </div>
+  </header>
+
+  @if (advancedOpen()) {
+    <div class="list-page-advanced-search">
+      <app-adv-search
+        [fields]="fields()"
+        [typeLists]="typeLists"
+        [(rows)]="filterRows"
+        (search)="onAdvancedSearch($event)"
+      />
+    </div>
+  }
+
+  <app-table [columns]="columns" [data]="filtered()" [(page)]="page" [(pageSize)]="pageSize" />
+</section>

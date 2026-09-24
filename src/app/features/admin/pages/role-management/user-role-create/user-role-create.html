@@ -1,0 +1,27 @@
+<form class="form-page" [formGroup]="form" (ngSubmit)="onSave()" novalidate>
+  <header class="form-page-header">
+    <h1 class="form-page-title">{{ 'admin.user_role_create' | translate }}</h1>
+    <div class="form-page-actions">
+      @for (button of actions; track button.text) {
+      <app-button [text]="button.text" [variant]="button.variant" [size]="button.size" [type]="button.type"
+        (click)="onAction(button.action)" />
+      }
+    </div>
+  </header>
+
+  <div class="form-page-body">
+    <div class="form-grid">
+      <app-input-text formControlName="roleId" label="admin.role_id" name="roleId" autocomplete="off"
+        [disabled]="true" />
+      <app-input-text formControlName="roleName" label="admin.role_name" name="roleName" autocomplete="off"
+        [error]="fieldError('roleName')" required />
+
+      <app-dropdown-select formControlName="status" label="admin.status" [options]="statusOptions()"
+        [error]="fieldError('status')" required />
+
+      @if (saved()) {
+      <p class="form-saved span-2" role="status">{{ 'admin.user_role_saved' | translate }}</p>
+      }
+    </div>
+  </div>
+</form>

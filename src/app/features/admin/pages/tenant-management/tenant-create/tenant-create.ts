@@ -11,6 +11,7 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Button, ButtonSize, ButtonType, ButtonVariant } from '../../../../../shared/components/button/button';
 import { DropdownSelect } from '../../../../../shared/components/dropdown-select/dropdown-select';
 import { InputText } from '../../../../../shared/components/input-text/input-text';
+import { Router } from '@angular/router';
 
 function passwordsMatch(group: AbstractControl): ValidationErrors | null {
   const password = group.get('password')?.value;
@@ -39,6 +40,7 @@ function toStoreSlug(businessName: string): string {
 export class TenantCreatePage {
   private readonly fb = inject(FormBuilder);
   private readonly i18n = inject(TranslateService);
+  private readonly router = inject(Router);
 
   readonly saved = signal(false);
 
@@ -47,12 +49,13 @@ export class TenantCreatePage {
     variant: ButtonVariant;
     size: ButtonSize;
     type: ButtonType;
-    action?: 'new' | 'delete';
+    action?: 'new' | 'delete' | 'list';
   }[] = [
-    { text: 'common.new', variant: 'primary', size: 'sm', type: 'button', action: 'new' },
-    { text: 'common.save', variant: 'primary', size: 'sm', type: 'submit' },
-    { text: 'common.delete', variant: 'primary', size: 'sm', type: 'button', action: 'delete' },
-  ];
+      { text: 'common.new', variant: 'primary', size: 'sm', type: 'button', action: 'new' },
+      { text: 'common.save', variant: 'primary', size: 'sm', type: 'submit' },
+      { text: 'common.delete', variant: 'primary', size: 'sm', type: 'button', action: 'delete' },
+      { text: 'common.list', variant: 'primary', size: 'sm', type: 'button', action: 'list' },
+    ];
 
   readonly form = this.fb.nonNullable.group(
     {
@@ -84,12 +87,15 @@ export class TenantCreatePage {
     });
   }
 
-  onAction(action?: 'new' | 'delete'): void {
+  onAction(action?: 'new' | 'delete' | 'list'): void {
     if (action === 'new') {
       this.onNew();
     }
     if (action === 'delete') {
       this.onDelete();
+    }
+    if (action === 'list') {
+      this.router.navigateByUrl('/admin/tenants');
     }
   }
 

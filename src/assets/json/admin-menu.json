@@ -15,18 +15,41 @@
       "show": true
     },
     {
+      "id": "role-management",
+      "labelKey": "admin.role_management",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M12 12a3.5 3.5 0 1 0-3.5-3.5A3.5 3.5 0 0 0 12 12Z\" stroke=\"currentColor\" stroke-width=\"1.7\"/><path d=\"M5.5 19.5c.8-3 3.2-4.5 6.5-4.5s5.7 1.5 6.5 4.5\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\"/><path d=\"M17 4.5h3.5V8M17.8 5.2l2.7 2.7\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+      "route": "/admin/roles",
+      "show": true,
+      "children": [
+        {
+          "id": "tenant-user-role",
+          "labelKey": "admin.tenant_user_role",
+          "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M12 12a3.5 3.5 0 1 0-3.5-3.5A3.5 3.5 0 0 0 12 12Z\" stroke=\"currentColor\" stroke-width=\"1.7\"/><path d=\"M5.5 19.5c.8-3 3.2-4.5 6.5-4.5s5.7 1.5 6.5 4.5\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\"/></svg>",
+          "route": "/admin/tenant-roles",
+          "show": true
+        },
+        {
+          "id": "admin-user-role",
+          "labelKey": "admin.admin_user_role",
+          "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M12 12a3.5 3.5 0 1 0-3.5-3.5A3.5 3.5 0 0 0 12 12Z\" stroke=\"currentColor\" stroke-width=\"1.7\"/><path d=\"M5.5 19.5c.8-3 3.2-4.5 6.5-4.5s5.7 1.5 6.5 4.5\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\"/></svg>",
+          "route": "/admin/roles",
+          "show": true
+        }
+      ]
+    },
+    {
       "id": "products",
       "labelKey": "admin.products",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M12 4a8 8 0 1 1-8 8\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\"/><path d=\"M12 4v8h8\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
       "route": "/admin/products",
-      "show": true,
+      "show": false,
       "children": [
         {
           "id": "products-list",
           "labelKey": "admin.products-list",
           "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M12 4a8 8 0 1 1-8 8\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\"/><path d=\"M12 4v8h8\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
           "route": "/admin/products/list",
-          "show": true
+          "show": false
         }
       ]
     },
